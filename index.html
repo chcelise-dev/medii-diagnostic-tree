@@ -1,0 +1,482 @@
+<title>美容儀滯銷診斷樹批註版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root {
+    --bg: #F5F7F4;
+    --surface: #FFFFFF;
+    --surface-2: #EEF1EC;
+    --ink: #22302B;
+    --muted: #5F6E66;
+    --line: #D9E0D8;
+    --line-strong: #B9C4BA;
+    --a: #0E7B62;  --a-tint: #E3F1EA;  --a-ink: #0A5C4A;
+    --b: #4956A8;  --b-tint: #E9ECF8;  --b-ink: #374180;
+    --c: #A8651F;  --c-tint: #F6ECDC;  --c-ink: #7E4B15;
+    --q-bg: #22302B; --q-ink: #F5F7F4;
+    --shadow: 0 1px 2px rgba(34,48,43,.06), 0 6px 20px rgba(34,48,43,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #131917;
+      --surface: #1C2422;
+      --surface-2: #232D2A;
+      --ink: #E6ECE7;
+      --muted: #9BA9A0;
+      --line: #31403A;
+      --line-strong: #46564F;
+      --a: #4EC49E;  --a-tint: rgba(78,196,158,.13);  --a-ink: #7FD9BC;
+      --b: #98A4E8;  --b-tint: rgba(152,164,232,.13); --b-ink: #B4BDF0;
+      --c: #D9A05B;  --c-tint: rgba(217,160,91,.13);  --c-ink: #E6BC87;
+      --q-bg: #E6ECE7; --q-ink: #131917;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131917;
+    --surface: #1C2422;
+    --surface-2: #232D2A;
+    --ink: #E6ECE7;
+    --muted: #9BA9A0;
+    --line: #31403A;
+    --line-strong: #46564F;
+    --a: #4EC49E;  --a-tint: rgba(78,196,158,.13);  --a-ink: #7FD9BC;
+    --b: #98A4E8;  --b-tint: rgba(152,164,232,.13); --b-ink: #B4BDF0;
+    --c: #D9A05B;  --c-tint: rgba(217,160,91,.13);  --c-ink: #E6BC87;
+    --q-bg: #E6ECE7; --q-ink: #131917;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    margin: 0;
+    padding: 0 1.25rem 4rem;
+  }
+  main { max-width: 980px; margin: 0 auto; }
+
+  h1, h2 {
+    font-family: "Noto Serif TC", "Noto Sans TC", serif;
+    text-wrap: balance;
+    line-height: 1.3;
+  }
+  .mono { font-family: "IBM Plex Mono", "Noto Sans TC", monospace; }
+
+  /* ---------- header ---------- */
+  header { padding: 3.5rem 0 2rem; border-bottom: 2px solid var(--ink); }
+  .eyebrow {
+    font-size: .78rem; font-weight: 700; letter-spacing: .18em;
+    color: var(--a); text-transform: uppercase; margin: 0 0 .75rem;
+  }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.7rem); font-weight: 900; margin: 0 0 1rem; }
+  .facts { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+  .facts li {
+    font-size: .82rem; color: var(--muted);
+    border: 1px solid var(--line-strong); border-radius: 2px;
+    padding: .12rem .6rem; background: var(--surface);
+  }
+  .facts li strong { color: var(--ink); font-weight: 700; }
+
+  /* ---------- sections ---------- */
+  section { margin-top: 3rem; }
+  h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 .35rem; }
+  .h2-note { color: var(--muted); font-size: .88rem; margin: 0 0 1.25rem; max-width: 42em; }
+  .secno {
+    display: inline-block; font-family: "IBM Plex Mono", monospace;
+    font-size: .8rem; font-weight: 600; color: var(--muted);
+    margin-right: .5rem; vertical-align: .15em;
+  }
+
+  /* ---------- funnel / MECE level 1 ---------- */
+  .formula {
+    font-family: "IBM Plex Mono", "Noto Sans TC", monospace;
+    font-size: clamp(.95rem, 2.6vw, 1.15rem); font-weight: 600;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 4px; padding: .8rem 1.1rem; margin-bottom: 1rem;
+    box-shadow: var(--shadow); overflow-x: auto; white-space: nowrap;
+  }
+  .formula .fa { color: var(--a); } .formula .fb { color: var(--b); }
+  .mece3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: .9rem; }
+  .branch {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+    padding: 1rem 1.1rem .9rem; box-shadow: var(--shadow);
+    border-top: 4px solid var(--line);
+  }
+  .branch.ba { border-top-color: var(--a); }
+  .branch.bb { border-top-color: var(--b); }
+  .branch.bc { border-top-color: var(--c); }
+  .branch h3 { margin: 0 0 .3rem; font-size: 1rem; font-weight: 700; }
+  .branch h3 .tag { margin-right: .45rem; }
+  .branch p { margin: 0 0 .6rem; font-size: .86rem; color: var(--muted); }
+  .codes { display: flex; flex-wrap: wrap; gap: .35rem; }
+
+  .tag {
+    display: inline-block; font-family: "IBM Plex Mono", monospace;
+    font-size: .74rem; font-weight: 600; line-height: 1;
+    padding: .28rem .45rem; border-radius: 3px;
+  }
+  .tag.ta { background: var(--a-tint); color: var(--a-ink); }
+  .tag.tb { background: var(--b-tint); color: var(--b-ink); }
+  .tag.tc { background: var(--c-tint); color: var(--c-ink); }
+
+  /* ---------- decision tree ---------- */
+  .treewrap {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+    padding: 1.5rem 1.5rem 1.25rem; box-shadow: var(--shadow); overflow-x: auto;
+  }
+  .tree, .tree ul { list-style: none; margin: 0; padding: 0; }
+  .tree ul {
+    margin-left: .7rem; padding-left: 1.5rem;
+    border-left: 2px solid var(--line-strong);
+  }
+  .tree li { position: relative; padding: .45rem 0; min-width: 14rem; }
+  .tree ul li::before {
+    content: ""; position: absolute; left: -1.5rem; top: 1.25em;
+    width: 1.15rem; height: 2px; background: var(--line-strong);
+  }
+  .tree ul li:last-child::after {
+    content: ""; position: absolute; left: calc(-1.5rem - 2px);
+    top: calc(1.25em + 2px); bottom: -0.05rem; width: 2px; background: var(--surface);
+  }
+
+  .qnode { display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: .5rem .6rem; }
+  .qcode {
+    font-family: "IBM Plex Mono", monospace; font-size: .78rem; font-weight: 600;
+    background: var(--q-bg); color: var(--q-ink);
+    padding: .3rem .5rem; border-radius: 3px; line-height: 1; align-self: center;
+  }
+  .qtext { font-weight: 700; }
+  .qhint { font-size: .8rem; color: var(--muted); }
+
+  .edge {
+    display: inline-block; font-size: .8rem; font-weight: 500; color: var(--muted);
+    border: 1px dashed var(--line-strong); border-radius: 999px;
+    padding: .08rem .65rem; margin-right: .55rem; background: var(--bg);
+  }
+  .goto { font-size: .85rem; font-weight: 700; }
+  .goto.ga { color: var(--a); } .goto.gb { color: var(--b); } .goto.gc { color: var(--c); }
+
+  .leaf {
+    display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: .3rem .55rem;
+    border: 1px solid var(--line); border-radius: 4px;
+    padding: .45rem .7rem; background: var(--bg);
+  }
+  .leaf.la { border-left: 4px solid var(--a); }
+  .leaf.lb { border-left: 4px solid var(--b); }
+  .leaf.lc { border-left: 4px solid var(--c); }
+  .leaf .name { font-weight: 700; font-size: .92rem; }
+  .leaf .fix { font-size: .82rem; color: var(--muted); }
+  .orig {
+    font-size: .68rem; font-weight: 700; color: var(--c-ink);
+    background: var(--c-tint); border-radius: 999px; padding: .12rem .5rem;
+    align-self: center;
+  }
+  .tree-legend { margin: 1rem 0 0; font-size: .82rem; color: var(--muted); }
+
+  /* ---------- hypothesis details ---------- */
+  .hypo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: .9rem; }
+  .hypo-col { display: flex; flex-direction: column; gap: .9rem; }
+  .hcard {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+    padding: .9rem 1rem; box-shadow: var(--shadow);
+  }
+  .hcard h4 { margin: 0 0 .45rem; font-size: .95rem; font-weight: 700; display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+  .hcard dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: .15rem .6rem; font-size: .84rem; }
+  .hcard dt { color: var(--muted); font-weight: 500; white-space: nowrap; }
+  .hcard dd { margin: 0; }
+  .colhead { font-size: .95rem; font-weight: 700; padding-bottom: .4rem; border-bottom: 3px solid var(--line); }
+  .colhead.ca { border-color: var(--a); } .colhead.cb { border-color: var(--b); } .colhead.cc { border-color: var(--c); }
+
+  /* ---------- action plan ---------- */
+  .plan { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: .9rem; counter-reset: step; }
+  .step {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+    padding: 1rem 1.1rem; box-shadow: var(--shadow); counter-increment: step;
+  }
+  .step .when {
+    font-family: "IBM Plex Mono", monospace; font-size: .74rem; font-weight: 600;
+    color: var(--a-ink); background: var(--a-tint); padding: .22rem .5rem; border-radius: 3px;
+  }
+  .step h4 { margin: .6rem 0 .3rem; font-size: .98rem; }
+  .step h4::before { content: counter(step) ". "; color: var(--a); }
+  .step p { margin: 0; font-size: .85rem; color: var(--muted); }
+  .step p strong { color: var(--ink); }
+
+  /* ---------- verdict ---------- */
+  .verdict-box {
+    background: var(--a-tint); border: 1px solid var(--a); border-radius: 4px;
+    padding: 1.25rem 1.4rem;
+  }
+  .verdict-box h2 { margin-top: 0; }
+  .verdict-box p { margin: .4rem 0; max-width: 46em; }
+  .verdict-box ol { margin: .6rem 0 0; padding-left: 1.4rem; }
+  .verdict-box li { margin: .25rem 0; }
+
+  footer { margin-top: 3.5rem; font-size: .78rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 1rem; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hcard, .branch, .step { transition: border-color .15s ease; }
+  }
+
+  /* ---------- Elise notes (additions only; original styles above untouched) ---------- */
+  :root { --n-line: #E6C34A; --n-bg: #FFFBE6; --n-ink: #B85C00; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --n-line: #C9A63A; --n-bg: #2B2612; --n-ink: #F0A050; }
+  }
+  :root[data-theme="dark"] { --n-line: #C9A63A; --n-bg: #2B2612; --n-ink: #F0A050; }
+
+  .note.note-span23 { grid-column: 1 / -1; margin-top: 0; text-align: center; }
+  @media (min-width: 800px) { .note.note-span23 { grid-column: 2 / -1; } }
+  .added-text { color: var(--n-ink); }
+  .gloss { color: var(--muted); font-size: .78rem; margin-left: .5rem; white-space: nowrap; }
+  .note.note-plain {
+    border: none; background: none; padding: 0; border-radius: 0; color: var(--n-ink); font-weight: 400;
+  }
+  .note.note-right {
+    display: inline-block; margin: 0 0 0 .6rem; vertical-align: middle; max-width: 26em;
+  }
+  .note {
+    display: block; margin-top: .5rem; max-width: 40em;
+    border: 1.5px solid var(--n-line); background: var(--n-bg); color: var(--n-ink);
+    border-radius: 4px; padding: .4rem .65rem; font-size: .82rem; line-height: 1.6;
+  }
+  .note::after {
+    content: " - elise"; font-family: "IBM Plex Mono", monospace; font-size: .72rem; opacity: .85; white-space: nowrap;
+  }
+  .facts li:has(.note-inline) { border-color: var(--n-line); }
+  .note-inline {
+    margin-left: .5rem; padding-left: .5rem; border-left: 1.5px solid var(--n-line);
+    color: var(--n-ink); font-size: .95em;
+  }
+  .note-inline::after {
+    content: " - elise"; font-family: "IBM Plex Mono", monospace; font-size: .72rem; opacity: .85; white-space: nowrap;
+  }
+  .tag.tnote { background: var(--n-bg); color: var(--n-ink); border: 1px solid var(--n-line); }
+  .edge.enote { border-color: var(--n-line); background: var(--n-bg); color: var(--n-ink); }
+  .leaf.lnote { border: 1.5px solid var(--n-line); border-left: 4px solid var(--n-line); background: var(--n-bg); }
+  .leaf.lnote .name, .leaf.lnote .fix { color: var(--n-ink); }
+  .hcard.hnote { border: 1.5px solid var(--n-line); background: var(--n-bg); }
+  .hcard.hnote h4, .hcard.hnote dt, .hcard.hnote dd { color: var(--n-ink); }
+  footer .tag.tnote { margin-left: .5rem; vertical-align: middle; }
+</style>
+
+<main>
+<header>
+  <p class="eyebrow">Sales Diagnostic · MECE × Decision Tree</p>
+  <h1>美容儀滯銷診斷樹</h1>
+  <ul class="facts">
+    <li>市場 <strong>香港</strong></li>
+    <li>模式 <strong>B2B 售予美容院</strong></li>
+    <li>銷售編制 <strong>1 名 sales</strong></li>
+    <li>薪酬 <strong>固定月薪 HK$20,000</strong><span class="note-inline">待確認；可能已有佣金但誘因不足。</span></li>
+    <li>現況 <strong>月成交 ≈ 0</strong></li>
+  </ul>
+</header>
+
+<section>
+  <h2><span class="secno">01</span>第一層 MECE：漏斗在哪裡斷了</h2>
+  <p class="h2-note">賣不出去，一定是這條公式的某一段是零。三個枝幹互斥（每個原因只屬於一段）且窮盡（漏斗之外只剩外部環境）。</p>
+  <div class="formula">銷售額 = <span class="fa">接觸量</span> × <span class="fb">轉換率</span> × 客單價</div>
+  <div class="mece3">
+    <div class="branch ba">
+      <h3><span class="tag ta">A</span>上游斷：接觸量不足</h3>
+      <p>根本沒有足夠的潛在客戶被接觸到。</p>
+      <div class="codes"><span class="tag ta">A1 態度</span><span class="tag ta">A2 激勵</span><span class="tag ta">A3 獲客</span><span class="tag ta">A4 通路</span></div>
+    </div>
+    <div class="branch bb">
+      <h3><span class="tag tb">B</span>中游斷：接觸了但不成交</h3>
+      <p>有拜訪、有 demo，轉換率仍趨近於零。</p>
+      <div class="codes"><span class="tag tb">B1 價格</span><span class="tag tb">B2 產品</span><span class="tag tb">B3 信任</span><span class="tag tb">B4 能力</span><span class="tag tb">B5 客群</span></div>
+    </div>
+    <div class="branch bc">
+      <h3><span class="tag tc">C</span>外部環境</h3>
+      <p>A、B 都做對也賣不動：市場或競爭問題。</p>
+      <div class="codes"><span class="tag tc">C1 市場萎縮</span><span class="tag tc">C2 競品壟斷</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="secno">02</span>Decision Tree：用數據逐層排除</h2>
+  <p class="h2-note">每一層設一個可量化的檢查點，不靠猜。從 Q1 開始往下走，走到哪片葉子，答案就在哪裡。</p>
+  <div class="treewrap">
+    <ul class="tree">
+      <li>
+        <span class="qnode"><span class="qcode">Q1</span><span class="qtext">Sales 每月實際接觸多少潛在客戶？</span><span class="qhint">查週報／CRM／通話記錄；沒有就先強制記錄兩週</span></span>
+        <ul>
+          <li>
+            <span class="edge">很少（&lt; 20 次／月）</span><span class="goto ga">→ 問題在 A（上游）</span>
+            <ul>
+              <li>
+                <span class="qnode"><span class="qcode">Q2</span><span class="qtext">是「有名單不打」，還是「根本沒名單」？</span></span>
+                <ul>
+                  <li>
+                    <span class="edge">有名單不打</span>
+                    <ul>
+                      <li>
+                        <span class="qnode"><span class="qcode">Q2a</span><span class="qtext">改成有佣金後，行為有變嗎？</span></span>
+                        <ul>
+                          <li><span class="edge">有變</span><span class="leaf la"><span class="tag ta">A2</span><span class="name">激勵制度問題</span><span class="fix">改「底薪＋佣金」＋活動 KPI</span></span></li>
+                          <li><span class="edge">沒變</span><span class="leaf la"><span class="tag ta">A1</span><span class="name">態度問題</span><span class="orig">老闆原假設</span><span class="fix">限期輔導，不改善則換人</span></span></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <span class="edge">根本沒名單</span><span class="leaf la"><span class="tag ta">A3</span><span class="tag ta">A4</span><span class="name">無獲客管道／通路過窄</span><span class="fix">責任在 owner：建獲客引擎、拓通路</span></span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span class="edge">接觸量足夠</span><span class="goto gb">→ 問題在 B 或 C</span>
+            <ul>
+              <li>
+                <span class="qnode"><span class="qcode">Q3</span><span class="qtext">約得到 demo 嗎？demo 後的成交率是多少？</span></span>
+                <ul>
+                  <li>
+                    <span class="edge">連 demo 都約不到</span>
+                    <ul>
+                      <li>
+                        <span class="qnode"><span class="qcode">Q3a</span><span class="qtext">Owner 陪訪、換話術後有改善嗎？</span></span>
+                        <ul>
+                          <li><span class="edge">有改善</span><span class="leaf lb"><span class="tag tb">B4</span><span class="name">Sales 能力問題</span><span class="fix">話術腳本＋demo SOP＋鎖定決策者</span></span></li>
+                          <li><span class="edge">沒改善</span><span class="leaf lb"><span class="tag tb">B5</span><span class="name">目標客群錯誤</span><span class="fix">重新定義 ICP，只打有預算有痛點的店</span></span><span class="gloss">ICP = 最可能需要、負擔得起的美容院類型</span></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <span class="edge">有 demo 但不買</span>
+                    <ul>
+                      <li>
+                        <span class="qnode"><span class="qcode">Q4</span><span class="qtext">訪談流失客戶：拒絕的真正理由是什麼？</span></span>
+                        <ul>
+                          <li><span class="edge">「太貴／拿不出這筆錢<span class="added-text">／不確定投資回報／美容院客戶有沒有需求</span>」</span><span class="leaf lb" style="display:block; margin-top:.3rem; margin-left:1.5rem;"><span class="tag tb">B1</span><span class="name">價格／付款門檻</span><span class="orig">老闆原假設</span><span class="fix">分期、以租代買、ROI 說帖、入門版</span></span></li>
+                          <li><span class="edge">「功能／效果不符」</span><span class="leaf lb"><span class="tag tb">B2</span><span class="name">產品不符需求</span><span class="orig">老闆原假設</span><span class="fix">換客群、回饋原廠、必要時換產品線</span></span></li>
+                          <li><span class="edge">「不放心／沒聽過你們」</span><span class="leaf lb"><span class="tag tb">B3</span><span class="name">信任不足</span><span class="fix">免費試用 30 天、案例、保固、買回保證</span></span></li>
+                          <li><span class="edge">「自己沒生意／已買競品」</span><span class="leaf lc"><span class="tag tc">C1</span><span class="tag tc">C2</span><span class="name">外部環境</span><span class="fix">差異化或租賃模式；轉市場、轉產品</span></span></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p class="tree-legend">標「老闆原假設」的葉子（A1、B1、B2）就是原本的三個猜測——只覆蓋整棵樹 11 片葉子中的 3 片。最可疑卻被漏掉的是 A2（薪酬無激勵）與 A3（公司沒有獲客引擎）。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="secno">03</span>11 個假設：驗證方法與解法</h2>
+  <p class="h2-note">每個假設都對應「要看什麼數據」與「成立之後怎麼做」。</p>
+  <div class="hypo-grid">
+    <div class="hypo-col">
+      <div class="colhead ca">A · 接觸量不足（上游）</div>
+      <div class="hcard">
+        <h4><span class="tag ta">A1</span>態度問題（不努力）<span class="orig">老闆原假設</span></h4>
+        <dl><dt>驗證</dt><dd>活動量記錄；改佣金後仍無改變</dd><dt>解法</dt><dd>每日拜訪 KPI 與簡報；限期改善，否則換人</dd></dl>
+        <div class="note">老闆認為難找到合適的人，現有 sales 跟客戶、公司關係也好。可透過錄音找問題點，或加一位偏佣金制的新 sales。</div>
+      </div>
+      <div class="hcard">
+        <h4><span class="tag ta">A2</span>激勵制度問題（沒動力）</h4>
+        <dl><dt>驗證</dt><dd>薪酬是否含佣金；改制後活動量變化</dd><dt>解法</dt><dd>底薪 $15k＋每台 5–10% 佣金＋季度目標獎金</dd></dl>
+      </div>
+      <div class="hcard">
+        <h4><span class="tag ta">A3</span>沒有名單／獲客管道</h4>
+        <dl><dt>驗證</dt><dd>名單來源與數量；marketing 預算是否為零</dd><dt>解法</dt><dd>美容展、IG/FB 投放、轉介紹獎金、與原料商互相引流</dd></dl>
+        <div class="note">1. 網站年約 8,000 訪客、聯絡頁 514 次瀏覽，但沒聯絡表單，Medii 沒有 follow up——有流量，沒名單。<br>2. Medii 已有參加美容展（有獲客）。<br>3. 派發傳單給美容院（獲客未知）。</div>
+      </div>
+      <div class="hcard">
+        <h4><span class="tag ta">A4</span>通路結構過窄</h4>
+        <dl><dt>驗證</dt><dd>通路盤點：是否只有一人直銷</dd><dt>解法</dt><dd>線上商城、經銷／代理、連鎖美容集團框架合作</dd></dl>
+      </div>
+    </div>
+    <div class="hypo-col">
+      <div class="colhead cb">B · 接觸了但不成交（中游）</div>
+      <div class="hcard">
+        <h4><span class="tag tb">B1</span>價格／付款門檻<span class="orig">老闆原假設</span></h4>
+        <dl><dt>驗證</dt><dd>流失訪談「太貴」佔比；競品定價比較</dd><dt>解法</dt><dd>分期、以租代買（月費制）、ROI 說帖、降規入門版</dd></dl>
+      </div>
+      <div class="hcard">
+        <h4><span class="tag tb">B2</span>產品不符需求<span class="orig">老闆原假設</span></h4>
+        <dl><dt>驗證</dt><dd>流失訪談「功能不符」佔比；demo 現場反應</dd><dt>解法</dt><dd>重新定位客群、回饋原廠改機、必要時換代理產品線</dd></dl>
+      </div>
+      <div class="hcard">
+        <h4><span class="tag tb">B3</span>信任／風險不足<span class="note note-right note-plain">可能不是</span></h4>
+        <dl><dt>驗證</dt><dd>客戶疑慮內容（安全、保固、品牌、牌照）</dd><dt>解法</dt><dd>免費試用 30 天、案例影片、延長保固、買回保證、合規文件</dd></dl>
+      </div>
+      <div class="hcard">
+        <h4><span class="tag tb">B4</span>Sales 能力不足</h4>
+        <dl><dt>驗證</dt><dd>Owner 陪訪 3–5 次實地觀察；demo→成交率</dd><dt>解法</dt><dd>話術腳本＋角色演練、demo SOP、鎖定老闆娘／店長</dd></dl>
+        <div class="note">如老闆在 office 但沒時間每次參與，可錄音 sales 跟客戶的對話，用 AI 分辨。</div>
+      </div>
+      <div class="hcard">
+        <h4><span class="tag tb">B5</span>目標客群錯誤</h4>
+        <dl><dt>驗證</dt><dd>拜訪名單 vs 實際成交客戶畫像</dd><dt>解法</dt><dd>重新定義 ICP，只打有預算、有痛點的店<span class="gloss" style="white-space:normal;">ICP = 最可能需要、負擔得起的美容院類型</span></dd></dl>
+      </div>
+    </div>
+    <div class="hypo-col">
+      <div class="colhead cc">C · 外部環境</div>
+      <div class="hcard">
+        <h4><span class="tag tc">C1</span>市場整體萎縮</h4>
+        <dl><dt>驗證</dt><dd>行業數據；多數客戶回饋「沒生意」</dd><dt>解法</dt><dd>轉戰大灣區／東南亞；轉型「設備＋課程＋耗材」模式</dd></dl>
+      </div>
+      <div class="hcard">
+        <h4><span class="tag tc">C2</span>競品壟斷</h4>
+        <dl><dt>驗證</dt><dd>競品價格、模式（是否租賃）、市佔</dd><dt>解法</dt><dd>差異化定位或跟進租賃；打不贏則轉產品</dd></dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="secno">04</span>兩週驗證行動計畫</h2>
+  <p class="h2-note">成本最低、資訊量最大的三個動作，做完就能在樹上定位答案。</p>
+  <div class="plan">
+    <div class="step">
+      <span class="when">WEEK 1–2</span>
+      <h4>建立漏斗數據</h4>
+      <p>要求 sales 記錄每日 <strong>接觸 → 約訪 → demo → 報價 → 成交</strong>。哪一段是零，答案就在哪一段。對應 Q1／Q3。</p>
+      <div class="note">老闆擔心 sales 配合意願。Elise 做記錄工具，sales 每次拜訪後打勾即可。</div>
+    </div>
+    <div class="step">
+      <span class="when">WEEK 1</span>
+      <h4>Owner 親自陪訪 3–5 次</h4>
+      <p>直接分辨 <strong>A1（不做）／B4（不會做）／B1、B2（客戶真的不要）</strong>。對應 Q2／Q3a。</p>
+      <div class="note">也許錄音 sales 跟客戶的對話，用 AI 分辨。</div>
+    </div>
+    <div class="step">
+      <span class="when">WEEK 2</span>
+      <h4>回訪 5 個拒絕過的客戶</h4>
+      <p>Owner 親自問「當初為什麼沒買」，把答案歸類到 <strong>B1／B2／B3／C</strong>，完成整棵樹定位。對應 Q4。</p>
+      <div class="note">條件式提問：「如果我們 XXX，能解決你的顧慮、讓你願意買嗎？」由 sales 做。</div>
+    </div>
+    <div class="note note-span23 note-plain">若老闆沒空親自做，comments 為替代做法。</div>
+  </div>
+</section>
+
+<section>
+  <div class="verdict-box">
+    <h2><span class="secno">05</span>先驗判斷：先修制度，再究個人</h2>
+    <p>單靠一名固定薪 sales、零行銷支援去賣高單價設備，<strong>結構上</strong>就很難成交——即使 sales 很認真，接觸量與信任建立都有天花板。在責怪個人（A1）之前，先驗證修正成本最低、回報最高的兩件事：</p>
+    <ol>
+      <li><strong>薪酬改為「底薪＋佣金」</strong>——一週內可完成（驗證 A2）。<div class="note">本來可能已是底薪＋佣金，需調整佣金結構／誘因設計。</div></li>
+      <li><strong>Owner 承擔獲客責任</strong>——建立至少一條穩定的名單來源（驗證 A3）。</li>
+      <li><strong>用漏斗數據說話</strong>——兩週後帶著數字回到這棵樹，重新定位。</li>
+    </ol>
+  </div>
+</section>
+
+<footer>診斷框架：MECE × Decision Tree · 假設共 11 項（A1–A4／B1–B5／C1–C2）· 檢查點 Q1–Q4</footer>
+</main>
+
